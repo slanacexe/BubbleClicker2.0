@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>BubbleClicker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Main "glass" window (hidden during gameplay) -->
+  <div class="container" id="mainContainer">
+    <h1>BubbleClicker</h1>
+
+    <div id="menu">
+      <input type="text" id="nickname" placeholder="Enter your nickname" maxlength="20" />
+      <button id="playBtn">PLAY</button>
+    </div>
+
+    <div id="difficultyMenu" class="hidden">
+      <h2>Select Difficulty</h2>
+      <div class="btnRow">
+        <button data-level="easy">Easy</button>
+        <button data-level="medium">Medium</button>
+        <button data-level="hard">Hard</button>
+      </div>
+      <p class="hint">Goal: hit the bubble enough times before 20s runs out.</p>
+    </div>
+
+    <div id="leaderboard">
+      <div class="lbHeader">
+        <h2>Leaderboard</h2>
+        <button id="clearLbBtn" class="ghost" type="button">Clear</button>
+      </div>
+      <ul id="leaderboardList"></ul>
+      <p class="hint">Top 10 scores are saved in your browser (localStorage).</p>
+    </div>
+  </div>
+
+  <!-- HUD (always on top while playing) -->
+  <div id="gameUI" class="hidden" aria-live="polite">
+    <div id="scoreBoard">
+      <span>Player: <strong id="playerName"></strong></span>
+      <span>Time: <strong id="time">0.000</strong>s</span>
+      <span>Score: <strong id="score">10000</strong></span>
+      <span class="chip">Limit: 20s</span>
+    </div>
+  </div>
+
+  <!-- Click target -->
+  <div id="bubble" class="hidden" aria-label="bubble target"></div>
+
+  <!-- Particles live here -->
+  <div id="fxLayer" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

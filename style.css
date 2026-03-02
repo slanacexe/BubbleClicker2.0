@@ -1,0 +1,235 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --glass: rgba(255,255,255,0.09);
+  --glass-border: rgba(255,255,255,0.18);
+  --shadow: rgba(0,0,0,0.45);
+}
+
+body{
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  color: white;
+
+  background: linear-gradient(45deg, #390F39, #1e0033, #0b2a3a, #2a0b3a);
+  background-size: 400% 400%;
+  animation: gradientShift 28s ease infinite;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes gradientShift{
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hidden{ display: none !important; }
+
+.container{
+  width: min(420px, 92vw);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 20px;
+  box-shadow: 0 18px 50px var(--shadow);
+  padding: 28px;
+  text-align: center;
+}
+
+h1{
+  letter-spacing: 0.5px;
+  margin-bottom: 14px;
+}
+
+h2{
+  margin: 14px 0 10px;
+  font-size: 18px;
+  opacity: 0.95;
+}
+
+input{
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(0,0,0,0.22);
+  color: white;
+  outline: none;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+input::placeholder{ color: rgba(255,255,255,0.7); }
+
+.btnRow{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Smooth RGB keyboard-like flow */
+button{
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 800;
+  color: white;
+
+  background: linear-gradient(90deg,
+    #ff3b3b, #ff9f1c, #ffe66d, #2ec4b6, #00bfff, #7b61ff, #ff4dff, #ff3b3b
+  );
+  background-size: 800% 100%;
+  animation: rgbFlow 10s linear infinite;
+  transition: transform 200ms ease, box-shadow 250ms ease, filter 250ms ease;
+}
+
+@keyframes rgbFlow{
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+button:hover{
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  filter: brightness(1.06);
+}
+
+button:active{
+  transform: translateY(0px) scale(0.98);
+}
+
+button.ghost{
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.10);
+  animation: none;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.lbHeader{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#leaderboard{
+  margin-top: 14px;
+  text-align: left;
+}
+
+#leaderboardList{
+  list-style: none;
+  margin-top: 8px;
+  max-height: 210px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+#leaderboardList li{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.18);
+  border: 1px solid rgba(255,255,255,0.10);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+#leaderboardList .name{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 62%;
+}
+
+#leaderboardList .points{
+  font-weight: 900;
+  opacity: 0.95;
+}
+
+.hint{
+  margin-top: 8px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* HUD on top while playing */
+#gameUI{
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(920px, 96vw);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+#scoreBoard{
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.16);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 12px 14px;
+
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  font-size: 15px;
+}
+
+.chip{
+  opacity: 0.9;
+  font-weight: 700;
+}
+
+/* Bubble target */
+#bubble{
+  position: fixed;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10; /* below HUD */
+  transition: transform 90ms ease, filter 200ms ease;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.45);
+}
+
+#bubble:active{
+  transform: scale(0.92);
+}
+
+/* FX particles layer */
+#fxLayer{
+  position: fixed;
+  inset: 0;
+  z-index: 20; /* above bubble, below HUD */
+  pointer-events: none;
+}
+
+/* Particle */
+.particle{
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  opacity: 0.95;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+  animation: pop 520ms ease-out forwards;
+}
+
+@keyframes pop{
+  0%   { transform: translate(-50%, -50%) scale(1); opacity: 0.95; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.3); opacity: 0; }
+}
