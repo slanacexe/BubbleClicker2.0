@@ -23,15 +23,16 @@ BubbleClicker2.0 🎯
 
 🛠 Tech Stack
 
-HTML5
-CSS3 (animated gradient background + glass UI)
-Vanilla JavaScript
-Browser localStorage
+- HTML5
+- CSS3 (animated gradient background + glass UI)
+- Vanilla JavaScript
+- Browser localStorage
 
 📌 Potential Future Improvements
 
-Sound effects
-Combo / accuracy system
-Separate leaderboard per difficulty
-Mobile optimization
+- Sound effects
+- Combo / accuracy system
+- Separate leaderboard per difficulty
+- Mobile optimization
+
 Simple idea. Clean execution. Fun reflex challenge. 🚀
